@@ -1,19 +1,23 @@
-Sun  9 Apr 16:21:03 UTC 2023
+README.md
 
-Blink in ASM: https://wokwi.com/projects/361483133632101377
+Tue 11 Apr 01:30:35 UTC 2023
+https://wokwi.com/projects/361672464877262849
 
-  was: https://wokwi.com/projects/361482746894193665
 
-```c
+
+older:
+
+Tue 11 Apr 00:54:07 UTC 2023
+https://wokwi.com/projects/361670038747009025
+
+
 void setup(void) {
     static volatile int c;
     c = (PBLINKS * 2) + 2;
     unsigned int *rptr = (unsigned int *) &c;
     return experiment_a_asm(rptr);
 }
-```
 
-```objdump
 10003288 <setup>:
     static volatile int c;
     c = (PBLINKS * 2) + 2;
@@ -32,10 +36,9 @@ void setup(void) {
 10003298:	20001aa8 	.word	0x20001aa8
 
 1000329c <loop>:
-```
+
 
 source, asmword.S for experiment_a_asm:
-```asm
    movs  r1, r0
    ldr   r0, [r1, #0]
    push  {lr}
@@ -44,9 +47,7 @@ source, asmword.S for experiment_a_asm:
    pop   {r0}
    bl    run_program
    pop   {pc}
-```
 
-```objdump
 10003264 <experiment_a_asm>:
 experiment_a_asm:
    movs  r1, r0
@@ -75,19 +76,21 @@ experiment_a_asm:
 10003284:	00f00000 	.word	0x00f00000
 
 10003288 <setup>:
-```
+#ifdef HAVE_FOUND_NON_WOKWI_ENVIRONMENT
+#warning this is  not wokwi
 
 
 
 
 
-### background info follows (more complete disassembly).
+
+background info follows (more complete disassembly).
 
 
 
-## Lines 299 to 451, sketch.lst (wokwi):
+Lines 299 to 451, sketch.lst (wokwi):
 
-```objdump
+
 10003210 <program_setup>:
 .equ GPIO_OUT_XOR        , 0x01c @ GPIO output value XOR
 
@@ -241,6 +244,6 @@ void loop() {
 10003294 <_ZN6RP204015_SystickHandlerEv>:
 #endif
     }
-```
+
 
 END.
