@@ -1,8 +1,6 @@
 @ asmword.S
-
-@ Sat  8 Apr 23:11:15 UTC 2023
-@ https://wokwi.com/projects/361482746894193665
-
+@ Tue 11 Apr 01:30:35 UTC 2023
+@ https://wokwi.com/projects/361672464877262849
 
 @ - - - - -   architecture flags   - - - - -
 
@@ -12,6 +10,7 @@
 
 .global experiment_a_asm
 .align 4
+
 
 @ - - - - -   program constants   - - - - -
 
@@ -55,9 +54,28 @@
 .equ GPIO_OUT_XOR        , 0x01c @ GPIO output value XOR
 
 #include "config.S"
+#include "noname.S"
 
 program_setup:
-   push   {r0, lr}
+   push   {r0, lr} @ new: was r0, lr
+   bl     xosc_init
+   movs   r0, #0
+   bl     uart_init
+   movs   r1, #2
+   movs   r0, #0
+   bl     gpio_init
+   movs   r1, #2
+   movs   r0, #1
+   bl     gpio_init
+   movs   r1, #1
+   movs   r0, #0
+   bl     gpio_dir
+   pop    {r0}
+
+   @ okay to comment this out:
+   bl     add_some_blinks
+
+   push   {r0}
    ldr    r0, =GPIO_CTRL
    movs   r1, #5
    str    r1, [r0, 0]
@@ -69,18 +87,12 @@ program_setup:
 
 blinking:
    push   {r0, lr}
-
-@  push   {r0}
-
    ldr    r1, =SIO_BASE
    ldr    r0, =1<<LED_ALT_PIN
    str    r0, [r1, #GPIO_OUT_XOR]
    ldr    r3, =COUNT
 1: subs   r3, #1
    bne    1b
-
-@  pop    {r0}
-
    pop    {r0, pc}
 
 run_program:
