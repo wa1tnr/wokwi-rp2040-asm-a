@@ -1,0 +1,20 @@
+Tue 11 Apr 02:27:33 UTC 2023
+
+Checked on wokwi - seems fine.   5 blinks is normal.
+
+as of this commit:
+
+commit b3749f5ae687a7c159f9aaa19c9244af0ffb9784
+Date:   Tue Apr 11 02:11:33 2023 +0000
+
+    May be ready to compile - UNTESTED
+    
+            new file:   project.cpp
+    
+    On branch dvlp-aa
+
+diff --git a/xosc-aa-a6d-GOOD/project.cpp b/xosc-aa-a6d-GOOD/project.cpp
+
+good to go.  May use as-is.
+
+END.
