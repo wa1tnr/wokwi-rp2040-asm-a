@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "author": " https://wokwi.com/projects/361482746894193665  Sat  8 Apr 23:11:15 UTC 2023 ",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-pi-pico",
+      "id": "pico",
+      "top": 0,
+      "left": 0,
+      "attrs": { "env": "arduino-community" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -32.4,
+      "left": -130.6,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 58.08,
+      "left": -186.53,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": -84.74,
+      "left": -52.26,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": -18.99,
+      "left": 117.73,
+      "rotate": 90,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 59.02,
+      "left": -80.93,
+      "rotate": 90,
+      "attrs": { "value": "100" }
+    },
+    {
+      "type": "wokwi-slide-switch",
+      "id": "sw1",
+      "top": 121.2,
+      "left": -98.23,
+      "rotate": 270,
+      "attrs": { "value": "1" }
+    },
+    {
+      "type": "wokwi-slide-switch",
+      "id": "sw2",
+      "top": -164.53,
+      "left": -34.63,
+      "attrs": { "value": "1" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -134.4,
+      "left": -163,
+      "attrs": { "volume": "0.1" }
+    },
+    { "type": "wokwi-logo", "id": "logo1", "top": 217.61, "left": 93.42, "attrs": {} }
+  ],
+  "connections": [
+    [ "pico:GP0", "$serialMonitor:RX", "", [] ],
+    [ "pico:GP1", "$serialMonitor:TX", "", [] ],
+    [ "led1:C", "r1:1", "black", [ "v10.96", "h-1.05" ] ],
+    [ "btn1:2.l", "led1:A", "white", [ "h-17.72", "v69.3", "h-4.67" ] ],
+    [ "r2:1", "btn1:1.r", "orange", [ "h-3.06", "v-45.78", "h-112" ] ],
+    [ "r3:1", "btn1:2.l", "yellow", [ "h0" ] ],
+    [ "btn1:1.l", "sw2:1", "cyan", [ "h-19.34", "v-45.02", "h40.67", "v-3.33" ] ],
+    [
+      "sw2:2",
+      "btn1:2.r",
+      "blue",
+      [ "v13.1", "h69.7", "v16", "h12", "v28.67", "h-12", "v40", "h-34" ]
+    ],
+    [ "pico:3V3", "r2:2", "red", [ "h0" ] ],
+    [ "sw1:3", "r3:2", "yellow", [ "h0" ] ],
+    [ "sw1:2", "pico:GP9", "yellow", [ "h42.73", "v-22.52" ] ],
+    [ "pico:GND.4", "r1:2", "black", [ "h-31", "v28.23", "h-1.33" ] ],
+    [
+      "bz1:2",
+      "sw1:1",
+      "orange",
+      [ "v12.82", "h-62.39", "v220.67", "h21.33", "v7.33", "h22.67", "v-10", "h94", "v-28", "h2" ]
+    ],
+    [
+      "bz1:1",
+      "pico:GND.4",
+      "black",
+      [ "v4.82", "h-64.39", "v266", "h160", "v-36", "h33.33", "v-6.67", "h17.33" ]
+    ]
+  ],
+  "dependencies": {}
+}
