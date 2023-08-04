@@ -1,1 +1,29 @@
-Fri  4 Aug 07:12:19 UTC 2023
+{
+  "version": 1,
+  "author": "wa1tnr 04 Aug 2023 06:15z",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -150.79,
+      "left": 138.07,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -68.59,
+      "left": 159.21,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    }
+  ],
+  "connections": [
+    [ "uno:GND.1", "led1:C", "black", [ "v0" ] ],
+    [ "led1:A", "r1:1", "green", [ "v0.29", "h23.66" ] ],
+    [ "uno:12", "r1:2", "yellow", [ "v-24.17", "h53.57", "v-18.62" ] ]
+  ],
+  "dependencies": {}
+}
